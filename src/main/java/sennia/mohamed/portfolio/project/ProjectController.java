@@ -10,7 +10,7 @@ import java.util.Map;
 @CrossOrigin(
         origins = {
                 "http://localhost:4200",
-
+                "https://senniamohamed.netlify.app/"
         },
         methods = {
                 RequestMethod.OPTIONS,

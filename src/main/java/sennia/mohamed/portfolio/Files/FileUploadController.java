@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 @CrossOrigin(
         origins = {
                 "http://localhost:4200",
+                "https://senniamohamed.netlify.app/"
 
         },
         methods = {
