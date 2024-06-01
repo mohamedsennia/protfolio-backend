@@ -12,10 +12,7 @@ import sennia.mohamed.portfolio.field.FieldDTO;
 import sennia.mohamed.portfolio.field.FieldService;
 import sennia.mohamed.portfolio.technologie.TechnologieService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -70,12 +67,15 @@ project.setTechnologies(projectDTO.getTechnologies().stream().map(technologieDTO
     public List<ProjectDTO>  filterProjects(Map<String,String> filters){
 
         String  type= (filters.get("type")!=null) ? filters.get("type"):"";
-        List<String>  technologies= (filters.get("technologies")!=null) ? List.of(filters.get("technologies")):this.technologieService.getTechnologies().stream().map(value->value.getName()).collect(Collectors.toList());
-        List<String>  fields= (filters.get("fields")!=null) ? List.of(filters.get("fields")):this.fieldService.getFields().stream().map(value->value.getFieldName()).collect(Collectors.toList());
+        List<String>  technologies= (filters.get("technologies")!=null) ? Arrays.asList(filters.get("technologies").split(";")):this.technologieService.getTechnologies().stream().map(value->value.getName()).collect(Collectors.toList());
+
+        List<String>  fields= (filters.get("fields")!=null) ? Arrays.asList(filters.get("fields").split(";")):this.fieldService.getFields().stream().map(value->value.getFieldName()).collect(Collectors.toList());
+
         if(type.equals("")){
 
         return this.projectRepository.filterProjects(technologies,fields).stream().map(mapper::toProjectDto).collect(Collectors.toList());}
         else{
+
             return this.projectRepository.filterProjectsWithType(technologies,fields,ProjectType.valueOf(type)).stream().map(mapper::toProjectDto).collect(Collectors.toList());
         }
 

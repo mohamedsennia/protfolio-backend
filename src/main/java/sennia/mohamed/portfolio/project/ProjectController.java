@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @CrossOrigin(
@@ -42,7 +43,20 @@ public class ProjectController {
         return this.projectService.getProjectsByType(type);
     }
     @GetMapping("/filterProjects")
-    public List<ProjectDTO>  filterProjects(@RequestParam Map<String,String> filters){
+    public List<ProjectDTO>   filterProjects( @RequestParam String fields,@RequestParam String techs,@RequestParam String type){
+
+        Map<String,String >filters=new HashMap<>();
+        if(fields!=""){
+            filters.put("fields",fields);
+        }
+        if(techs!=""){
+            filters.put("techs",techs);
+        }
+        if(type!=""){
+            filters.put("type",type);
+        }
+
+
     return this.projectService.filterProjects(filters);
 
     }
