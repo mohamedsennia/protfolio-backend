@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -33,7 +34,7 @@ import java.nio.file.Paths;
 public class FileUploadController {
     @Value("${upload.dir}")
     private String uploadDir;
-    private final Path uploadPath = Paths.get("src/main/resources/uploads");
+
     @PostMapping
     public ResponseEntity<CostumeFile> uploadFile(@RequestParam("file") MultipartFile file) {
 
@@ -50,8 +51,11 @@ public class FileUploadController {
             File destFile = new File(absoluteUploadDir + File.separator + fileName);
 
             file.transferTo(destFile);
+            System.out.println(destFile.getAbsolutePath());
             String[] path=uploadDir.split("/");
+
             CostumeFile costumeFile=new CostumeFile( path[path.length-1]+"/"+fileName);
+
             return new ResponseEntity<>(costumeFile, HttpStatus.OK);
         } catch (IOException e) {
             e.printStackTrace();
