@@ -37,12 +37,12 @@ public class FileUploadController {
 
     @PostMapping
     public ResponseEntity<CostumeFile> uploadFile(@RequestParam("file") MultipartFile file) {
-    System.out.println("aaaaaaaaaaaaaa");
+
 
         try {
             String fileName = file.getOriginalFilename();
             String absoluteUploadDir = new File(uploadDir).getAbsolutePath();
-
+            System.out.println( absoluteUploadDir);
             File directory = new File(absoluteUploadDir);
             if (!directory.exists()) {
                 directory.mkdirs();
@@ -51,7 +51,7 @@ public class FileUploadController {
             File destFile = new File(absoluteUploadDir + File.separator + fileName);
 
             file.transferTo(destFile);
-            System.out.println(destFile.getAbsolutePath());
+
             String[] path=uploadDir.split("/");
 
             CostumeFile costumeFile=new CostumeFile( path[path.length-1]+"/"+fileName);
