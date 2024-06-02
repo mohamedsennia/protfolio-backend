@@ -40,6 +40,7 @@ public class ProjectController {
     }
     @GetMapping("/getProjectsByType/{type}")
     public List<ProjectDTO> getProjectsByType(@PathVariable String type){
+        System.out.println("bbbbbbbbbbbbb");
         return this.projectService.getProjectsByType(type);
     }
     @GetMapping("/filterProjects")

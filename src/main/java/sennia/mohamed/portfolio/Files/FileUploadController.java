@@ -37,7 +37,7 @@ public class FileUploadController {
 
     @PostMapping
     public ResponseEntity<CostumeFile> uploadFile(@RequestParam("file") MultipartFile file) {
-
+    System.out.println("aaaaaaaaaaaaaa");
 
         try {
             String fileName = file.getOriginalFilename();
