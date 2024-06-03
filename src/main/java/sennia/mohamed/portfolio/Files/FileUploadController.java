@@ -42,7 +42,7 @@ public class FileUploadController {
         try {
             String fileName = file.getOriginalFilename();
             String absoluteUploadDir = new File(uploadDir).getAbsolutePath();
-            System.out.println( absoluteUploadDir);
+            System.out.println( absoluteUploadDir+"      aaaaaa");
             File directory = new File(absoluteUploadDir);
             if (!directory.exists()) {
                 directory.mkdirs();
