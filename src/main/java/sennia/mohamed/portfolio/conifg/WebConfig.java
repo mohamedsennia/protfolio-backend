@@ -26,6 +26,6 @@ public class WebConfig implements WebMvcConfigurer {
         link=link.replace('\\','/')+'/';
 
         registry.addResourceHandler("/uploads/**")
-                .addResourceLocations("file:/"+link);
+                .addResourceLocations("file:"+link);
     }
 }
